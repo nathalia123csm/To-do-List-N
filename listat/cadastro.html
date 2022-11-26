@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login</title>
+
+</head>
+   <style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-image: linear-gradient(to right, rgb(255, 105, 180), rgb(219, 112, 147));
+    }
+    #sitetodo {
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border-radius: 15px;
+            width: 25%;
+        }
+
+    form {
+            border: 3px solid palevioletred;
+            padding: 5px;
+        }
+     h2 {
+            border: 1px solid palevioletred;
+            padding: 5px;
+            text-align: center;
+            background-color: palevioletred;
+            border-radius: 9px;
+        }
+        .input-group {
+            position: relative;
+        }
+        .todos {
+            background: none;
+            border: none;
+            border-bottom: 1px solid white;
+            outline: none;
+            color: white;
+            font-size: 15px;
+            width: 50%;
+            letter-spacing: 2px;
+        }
+        .labelinput {
+            position: absolute;
+            top: 18px;
+            left: 0px;
+            pointer-events: none;
+            transition: .4%;
+        }
+        .todos:focus~.labelinput,
+        .todos:valid~.labelinput {
+            top: -20px;
+            font-size: 12px;
+            color: palevioletred;
+        }
+        #submit {
+            background-image: linear-gradient(to right, rgb(255, 105, 180), rgb(219, 112, 147));
+            width: 100%;
+            border: none;
+            padding: 8px;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+
+    </style>
+
+<body>
+    <div id="sitetodo">
+        <form id="form">
+            <h2> Cadastro </h2>
+
+            <div class="input-group ">
+               <br><input type="text"  class="todos" oninput="ValidaNome()" required>
+               <label for="nome" class="labelinput">Nome</label>
+            </div>
+            <br>
+
+            <div class="input-group ">
+                <br><input type="text"  class="todos" oninput="ValidaLogin()" required>
+                <label for="login" class="labelinput">Login</label>
+            </div>
+            <br>
+
+            <div class="input-group">
+                <br><input type="email" class="todos" oninput="ValidaEmail()" required>
+                <label for="email" class="labelinput">Email</label>
+            </div>
+            <br>
+
+            <div class="input-group">
+                <br><input type="password"class="todos" oninput="ValidaSenha()" required>
+                <label for="senha" class="labelinput">Senha</label>
+            </div>
+            <br>
+
+            <div class="input-group">
+                <br><input type="password"  class="todos"
+                    oninput=" ConfSenha()" required>
+                <label for="confsenha" class="labelinput">Confirmar Senha</label>
+            </div>
+
+            <br><button type="submit" name="submit" id="submit" onclick="ir()">Enviar</button>
+
+            <script>
+                const form = document.getElementById("form");
+                const sessao = document.querySelectorAll(".todos");
+                const td = document.querySelectorAll(".ttodos");
+                const erros = document.querySelectorAll(".erro");
+                const valido = document.querySelectorAll(".certo");
+                const emailR = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+
+
+                function MostraErro(index) {
+                    sessao[index].style.border = "4px solid #FF0000";
+                    td[index].style.display = "block";
+                    erros[index].style.display = "block";
+                    valido[index].style.display = "none";
+
+                }
+                function ConsertaErro(index) {
+                    sessao[index].style.border = " 4px solid #00FF00";
+                    td[index].style.display = "none";
+                    valido[index].style.display = "block";
+                    erros[index].style.display = "none";
+
+                }
+                function ValidaNome() {
+                    if (sessao[0].value.length > 10) {
+
+                        MostraErro(0)
+                    }
+                    else {
+                        ConsertaErro(0)
+                    }
+                }
+                function ValidaLogin() {
+                    if (sessao[1].value.length < 10) {
+
+                        MostraErro(1)
+                    }
+                    else {
+                        ConsertaErro(1)
+                    }
+                }
+
+                function ValidaEmail() {
+                    if (!emailR.test(sessao[2].value)) {
+                        MostraErro(2)
+                    }
+                    else {
+                        ConsertaErro(2)
+                    }
+                }
+
+                function ValidaSenha() {
+                    if (sessao[3]) {
+
+                        ConsertaErro(3);
+
+                    }
+                }
+                function ConfSenha() {
+                    if (sessao[3].value !== sessao[4].value) {
+
+                        MostraErro(4);
+                    }
+                    else {
+                        ConsertaErro(4);
+                    }
+                }
+                function ir() {
+                    if (ValidaNome.value, ValidaLogin.value, ValidaEmail.value, ValidaSenha.value, ConfSenha.value == "") {
+
+                    }
+                    else if (ValidaNome.value.length < 10, ValidaLogin.value.length > 10, !emailR.test(ValidaEmail.value), ValidaSenha.value != ConfSenha.value) {
+                    }
+                }
+            </script>
+    </div>
+</div>
+</body>
+
+</html>
